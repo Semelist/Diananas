@@ -1,47 +1,576 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт работает!</title>
+    <title>Diana Satskih | Universal Hairdresser & Administrator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* БАЗОВЫЕ НАСТРОЙКИ И ПАЛИТРА */
+        :root {
+            --bg-color: #fbfaf8; /* Нежный кремовый фон */
+            --text-main: #333333;
+            --text-light: #666666;
+            --accent: #d4af37; /* Мягкое золото для акцентов */
+            --border: #e6e0d4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+        }
+
+        /* HEADER / PROFILE */
+        .profile-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin: 0 auto 20px;
+            display: block;
+            background-color: #ddd; /* Фон на случай если нет фото */
+        }
+
+        .profile-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .contacts {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .contact-item:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            gap: 20px;
+            margin-top: 20px;
         }
-        .container {
-            text-align: center;
-            padding: 3rem;
-            background: #ffffff;
+
+        .social-icons a {
+            color: var(--text-main);
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+
+        /* TEXT BLOCKS (About & Experience) */
+        .text-block {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 20px;
+        }
+
+        .text-block p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background: var(--bg-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+
+        /* GRID GALLERY (Diplomas & Works) */
+        .grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .grid-gallery img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .grid-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        .diploma-main {
+            grid-column: 1 / -1; /* Главный диплом на всю ширину на мобилке */
+            aspect-ratio: auto !important;
+            max-height: 400px;
+        }
+
+        /* VIDEOS */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 12px;
+            background: #000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* BEFORE / AFTER SLIDER */
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .ba-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 500px;
         }
-        h1 {
-            color: #2ea44f; /* Фирменный зеленый цвет GitHub */
-            margin-bottom: 10px;
+
+        .ba-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
         }
-        p {
-            line-height: 1.5;
-            color: #666;
+
+        .img-before {
+            z-index: 1;
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
         }
-        .domain {
-            font-weight: bold;
-            color: #0366d6;
+
+        .ba-slider {
+            position: absolute;
+            z-index: 3;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: ew-resize;
+        }
+
+        .slider-line {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: white;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+
+        .ba-labels {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .ba-labels span {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* LIGHTBOX (FULLSCREEN IMAGES) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+        }
+
+        /* MEDIA QUERIES (Адаптация под ПК) */
+        @media (min-width: 768px) {
+            .grid-gallery { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .contacts { flex-direction: row; justify-content: center; gap: 40px; }
+            .profile-header h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎉 Ура, всё получилось!</h1>
-        <p>Если вы видите эту страницу, значит связка GitHub Pages и вашего домена <span class="domain">diananas.com</span> настроена абсолютно верно.</p>
-        <p>Теперь этот тестовый файл можно удалить и загрузить сюда настоящий код вашего портфолио.</p>
+
+    <header class="profile-header container">
+        <img src="https://ui-avatars.com/api/?name=Diana+Satskih&background=d4af37&color=fff&size=200" alt="Diana Satskih" class="profile-photo">
+        
+        <h1>Diana Satskih</h1>
+        <div class="subtitle">Universal Hairdresser & Salon Administrator</div>
+        
+        <div class="contacts">
+            <a href="tel:+37254502464" class="contact-item">
+                <i class="fa-solid fa-phone"></i> +372 5450 2464
+            </a>
+            <a href="mailto:Ledidi0383@gmail.com" class="contact-item">
+                <i class="fa-solid fa-envelope"></i> Ledidi0383@gmail.com
+            </a>
+        </div>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/saranhe_ananasik?igsh=NHp4MWJwNHJ1c24x&utm_source=qr" target="_blank" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="text-block">
+            <h3>About Me</h3>
+            <p>Salon administrator and assistant manager. I am responsible for product ordering, e-commerce management, and ensuring exceptional communication and service for our clients.</p>
+        </div>
+
+        <div class="text-block">
+            <h3>Experience & Skills</h3>
+            <p><strong>Juuste Akadeemia</strong> (Since August 2024)</p>
+            <p>Highly skilled in plant-based hair coloring. I provide haircuts of any complexity for women, men, and children. My expertise extends to advanced coloring techniques, therapeutic scalp treatments, and comprehensive hair care regimens tailored to improve scalp and hair health.</p>
+            
+            <div class="tags">
+                <span class="tag">Partnered with Wella</span>
+                <span class="tag">Sim</span>
+                <span class="tag">Joico</span>
+                <span class="tag">Organethic</span>
+                <span class="tag">Radico (Natural Dyes)</span>
+                <span class="tag">Scalp Treatments</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Education & Certifications</h2>
+        <div class="grid-gallery">
+            <img class="clickable-img diploma-main" src="https://raw.githubusercontent.com/Semelist/Diananas/main/diplomas/photo_2026-04-09_13-05-44.jpg" alt="Main Diploma" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/diplomas/%D0%A1%D0%BA%D0%B0%D0%BD_20260407%20(2).png" alt="Certificate" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/diplomas/%D0%A1%D0%BA%D0%B0%D0%BD_20260407%20(3).png" alt="Certificate" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/diplomas/%D0%A1%D0%BA%D0%B0%D0%BD_20260407%20(4).png" alt="Certificate" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/diplomas/%D0%A1%D0%BA%D0%B0%D0%BD_20260407%20(5).png" alt="Certificate" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/diplomas/%D0%A1%D0%BA%D0%B0%D0%BD_20260407.png" alt="Certificate" loading="lazy">
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Before & After Transformation</h2>
+        <div class="ba-grid">
+            
+            <div class="ba-container">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_44_2026-04-09_12-33-21.jpg" alt="After">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_43_2026-04-09_12-33-21.jpg" class="img-before" alt="Before">
+                <div class="slider-line">
+                    <div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div>
+                </div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-labels"><span>Before</span><span>After</span></div>
+            </div>
+
+            <div class="ba-container">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_1_2026-04-09_12-33-21.jpg" alt="After">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_2_2026-04-09_12-33-21.jpg" class="img-before" alt="Before">
+                <div class="slider-line"><div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div></div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-labels"><span>Before</span><span>After</span></div>
+            </div>
+
+            <div class="ba-container">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_13_2026-04-09_12-33-21.jpg" alt="After">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_8_2026-04-09_12-33-21.jpg" class="img-before" alt="Before">
+                <div class="slider-line"><div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div></div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-labels"><span>Before</span><span>After</span></div>
+            </div>
+
+            <div class="ba-container">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_23_2026-04-09_12-33-21.jpg" alt="After">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_14_2026-04-09_12-33-21.jpg" class="img-before" alt="Before">
+                <div class="slider-line"><div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div></div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-labels"><span>Before</span><span>After</span></div>
+            </div>
+
+            <div class="ba-container">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_19_2026-04-09_12-33-21.jpg" alt="After">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_18_2026-04-09_12-33-21.jpg" class="img-before" alt="Before">
+                <div class="slider-line"><div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div></div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-labels"><span>Before</span><span>After</span></div>
+            </div>
+
+            <div class="ba-container">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_25_2026-04-09_12-33-21.jpg" alt="After">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_26_2026-04-09_12-33-21.jpg" class="img-before" alt="Before">
+                <div class="slider-line"><div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div></div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-labels"><span>Before</span><span>After</span></div>
+            </div>
+
+            <div class="ba-container">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_30_2026-04-09_12-33-21.jpg" alt="After">
+                <img src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_29_2026-04-09_12-33-21.jpg" class="img-before" alt="Before">
+                <div class="slider-line"><div class="slider-button"><i class="fa-solid fa-arrows-left-right"></i></div></div>
+                <input type="range" min="0" max="100" value="50" class="ba-slider">
+                <div class="ba-labels"><span>Before</span><span>After</span></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Video Showcase</h2>
+        <div class="video-grid">
+            <video class="scroll-video" muted loop playsinline preload="metadata">
+                <source src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_4898.MOV">
+            </video>
+            <video class="scroll-video" muted loop playsinline preload="metadata">
+                <source src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_0351.MOV">
+            </video>
+            <video class="scroll-video" muted loop playsinline preload="metadata">
+                <source src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_5190.MOV">
+            </video>
+            <video class="scroll-video" muted loop playsinline preload="metadata">
+                <source src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_5226.MOV">
+            </video>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Recent Works</h2>
+        <div class="grid-gallery">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_0300.JPG" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_0350.JPG" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_0434.JPG" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_0768.JPG" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/IMG_4872.JPG" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_4_2026-04-09_12-33-21.jpg" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_21_2026-04-09_12-33-21.jpg" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_31_2026-04-09_12-33-21.jpg" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_32_2026-04-09_12-33-21.jpg" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_33_2026-04-09_12-33-21.jpg" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_34_2026-04-09_12-33-21.jpg" alt="Work" loading="lazy">
+            <img class="clickable-img" src="https://raw.githubusercontent.com/Semelist/Diananas/main/samples/photo_37_2026-04-09_12-33-21.jpg" alt="Work" loading="lazy">
+        </div>
+    </section>
+
+    <footer>
+        <p>made by soucify.tech &copy; All rights reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Fullscreen Image">
     </div>
+
+    <script>
+        // 1. Логика слайдера "До/После"
+        document.querySelectorAll('.ba-container').forEach(container => {
+            const slider = container.querySelector('.ba-slider');
+            const imgBefore = container.querySelector('.img-before');
+            const sliderLine = container.querySelector('.slider-line');
+
+            slider.addEventListener('input', (e) => {
+                const sliderValue = e.target.value;
+                // Двигаем "шторку" картинки ДО
+                imgBefore.style.clipPath = `polygon(0 0, ${sliderValue}% 0, ${sliderValue}% 100%, 0 100%)`;
+                // Двигаем визуальную линию с кнопкой
+                sliderLine.style.left = `${sliderValue}%`;
+            });
+        });
+
+        // 2. Логика Лайтбокса (увеличение фото по клику)
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.clickable-img');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        // Закрытие лайтбокса
+        lightbox.addEventListener('click', (e) => {
+            if(e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // 3. Умное автовоспроизведение видео при скролле (без звука)
+        const videos = document.querySelectorAll('.scroll-video');
+        
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.play().catch(e => console.log("Autoplay prevented by browser", e));
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }, { threshold: 0.5 }); // Воспроизводить, когда видно хотя бы 50% видео
+
+        videos.forEach(video => {
+            videoObserver.observe(video);
+        });
+    </script>
 </body>
 </html>
